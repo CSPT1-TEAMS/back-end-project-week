@@ -6,6 +6,6 @@ express
   .get("/", (req, res) => {
     res.json({ message: "connected like a boss!" });
   })
-  .listen(port, (req, res) => {
+  .listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
