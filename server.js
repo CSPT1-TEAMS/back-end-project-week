@@ -6,5 +6,5 @@ express.get('/', (req, res) => {
   res.json({message: "connected like a boss!"})
 })
 .listen(port, (req, res) => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`)
 })
