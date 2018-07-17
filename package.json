@@ -1,11 +1,11 @@
 {
-  "name": "back-end-project-week",
+  "name": "heroku-playground",
   "version": "1.0.0",
-  "description": "This week you will be building a backend for a note taking app called \"Lambda Notes.\"",
-  "main": "index.js",
+  "description": "",
   "engines": {
-    "node": "8.11.3"
+    "node": "8.11.2"
   },
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/NewbieWanKenobi/back-end-project-week/issues"
   },
-  "homepage": "https://github.com/NewbieWanKenobi/back-end-project-week#readme"
+  "homepage": "https://github.com/NewbieWanKenobi/back-end-project-week#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
