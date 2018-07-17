@@ -4,7 +4,7 @@ const server = require('./server');
 const port = 8080;
 
 mongoose
-  .connect('mongodb://localhost/placeholderDB')
+  .connect('mongodb://alexbotello:passforapp@ds239911.mlab.com:39911/heroku_m948f5xs')
   .then(() => {
     console.log('Connected to mongo database')
     server.listen(port, () => {
