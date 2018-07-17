@@ -1,14 +1,15 @@
 const express = require('express');
-const Routes = require('./_config/router');
-
+const userRouters = require('./Routes/userRoutes');
+const morgan = require('morgan');
 
 const server = express();
+server.use(express.json());
+server.use(morgan('dev'));
 
-server
-    .get('/', (req, res) => {
+server.get('/', (req, res) => {
         res.json({ Connected : "!=== Connected ===!" })
-    })
+    });
 
-    Routes(server);
+    server.use('/', userRouters);
 
 module.exports = server;
