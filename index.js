@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const server = require('./server');
 
-const port = 8080;
+const port = process.env.PORT || 5000
 
 mongoose
   .connect('mongodb://alexbotello:passforapp1@ds239911.mlab.com:39911/heroku_m948f5xs')
