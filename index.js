@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require('express')();
 const PORT = process.env.PORT || 5000;
 
-express()
+express
     .get('/', (req, res) => {
         res.json({ Connected : "!=== Connected ===!" })
     })
