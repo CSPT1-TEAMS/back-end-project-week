@@ -1,11 +1,6 @@
-const express = require("express")();
+const express = require('express')
+const PORT = process.env.PORT || 5000
 
-const port = process.env.PORT || 5050;
-
-express
-  .get("/", (req, res) => {
-    res.json({ message: "connected like a boss!" });
-  })
-  .listen(port, () => {
-    console.log(`Listening on port ${port}`);
-  });
+express()
+  .get('/', (req, res) => res.json('Hello world!'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
