@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest --watch --verbose"
   },
   "repository": "git@github.com:alexbotello/back-end-project-week.git",
   "author": "Alexander <alexander.botello@g.austincc.edu>",
