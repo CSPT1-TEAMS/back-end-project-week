@@ -12,11 +12,14 @@ router.get('/notes', (req, res) => {
         })
 })
     .post('/notes/new', async (req, res) => {
-        const user = await User.findById("5b4f9a8513bdf60cb001538f")
-        console.log(user._id)
-        Note.create(req.body)
-            .then(createdNote => {
-                user.notes.push(createdNote._id)
+
+        const user = await User.findById(/* user token */)
+        const createdNote = await Note.create(req.body)
+        user.notes.push(createdNote)
+        await user.save()
+        res.status(201).json(createdNote)
+
+            .then(async createdNote => {
                 res.status(201).json(createdNote);
             })
             .catch(err => {
