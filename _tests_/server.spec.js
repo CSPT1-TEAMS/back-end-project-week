@@ -54,8 +54,35 @@ describe('Server API', () => {
 
   })
 
-  describe('POST', () => {
+  describe('POST /notes', () => {
+    const note = {
+      title: 'Note 5',
+      content: 'Check out this note'
+    }
 
+    const badNote = {
+      title: 'Note 6'
+    }
+    it('should return a success status of 201', async() => {
+      await request(server)
+        .post('/api/notes')
+        .send(note)
+        .expect(201);
+    })
+
+    it('should return the Note that was posted', async() => {
+      const response = await request(server)
+        .post('/api/notes')
+        .send(note);
+      expect(response.body).toMatchObject(note);
+    })
+
+    it('should return a failure status of 500 if invalid data is given', async() => {
+      await request(server)
+        .post('/api/notes')
+        .send(badNote)
+        .expect(500);
+    })
   });
 
   describe('PUT', () => {
