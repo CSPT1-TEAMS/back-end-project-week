@@ -51,7 +51,27 @@ describe('Server API', () => {
   });
 
   describe('GET /notes/:id', () => {
+    it('should return a success status of 200', async () => {
+      const response = await request(server).get('/api/notes')
+      const note = response.body[0];
+      await request(server)
+        .get(`api/notes/${note._id}`)
+        .expect(200);
+    })
 
+    it('should return a note', async() => {
+      const response = await request(server).get('/api/notes')
+      const note = response.body[0];
+      const newResponse = await request(server).get(`api/notes/${note._id}`)
+      expect(newResponse.body).toMatchObject({title: 'Note 1', content: 'This is a note'})
+    })
+
+    it('should return 404 if note is not found', async() => {
+      const id = '5b4a435988a2ca366e40aa8'
+      await request(server)
+       .get(`/api/notes/${note._id}`)
+       .expect(404)
+    })
   })
 
   describe('POST /notes', () => {
