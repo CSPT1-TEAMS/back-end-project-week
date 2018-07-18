@@ -18,7 +18,13 @@ mongoose.connect("mongodb://ravanibhavik:asdfgf1234@ds239911.mlab.com:39911/back
     })
 
 server.get("/", (req, res) => {
-    return res.status(200).json({hello: 'world'})
+    Note.find({})
+        .then(notes => {
+            return res.status(200).json(notes)
+        })
+        .catch(error => {
+            return res.status(500).json({errorMessage: "Error fetching data from db."})
+        })
 })
 
 server.post("/notes/new", (req, res) => {
