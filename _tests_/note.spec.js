@@ -9,7 +9,7 @@ describe('Note Model', () => {
 
   beforeAll(() => {
     return mongoose
-      .connect('mongodb://alexbotello:passforapp1@ds239911.mlab.com:39911/heroku_m948f5xs')
+      .connect('mongodb://alexbotello:passfortestdb1@ds239911.mlab.com:39911/lambda-notes-testdb')
       .then(() => {})
       .catch(err => {
         console.log('Error connectiong to TEST db, instance is not running');
