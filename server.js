@@ -36,3 +36,15 @@ server.post("/notes/new", (req, res) => {
             res.status(500).json({errorMessage: 'Unable to add note.'})
         })
 })
+
+server.put("/notes/edit/:id", (req, res) => {
+    const { id } = req.params
+    Note.findByIdAndUpdate(id, req.body)
+        .then(note => {
+            if (note === null) {
+                return res.status(404).json({message: `Unable to find note with Id ${id}`})
+            } else {
+                return res.status(200).json(note)
+            }
+        })
+})
