@@ -25,7 +25,19 @@ router.route('/')
   })
 
 router.route('/:id')
-  .get()
+  .get((req, res) => {
+    const { id } = req.params;
+    Note.findById(id)
+      .then(note => {
+        if (note === null) {
+          return res.status(404).json({error: 'Note with specified ID does not exist'})
+        }
+        res.status(200).json(note);
+      })
+      .catch(error => {
+        res.status(500).json(error)
+      })
+  })
   .put()
   .delete()
 
