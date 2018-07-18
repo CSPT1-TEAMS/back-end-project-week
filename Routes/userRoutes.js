@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../Models/userModel');
+const Note = require('../Models/noteModel');
 
 router.post('/register', (req, res) => {
     const { username, password } = req.body;
@@ -22,6 +23,20 @@ router.post('/register', (req, res) => {
         .select('-password')
         .then(users => {
             res.status(200).json(users);
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
+    })
+
+    .get('/users/:id', (req, res) => {
+        const { id } = req.params;
+
+        User.findById(id)
+        .select('-password')
+        .populate('notes')
+        .then(user => {
+            res.status(200).json(user);
         })
         .catch(err => {
             res.status(500).json(err);

@@ -10,10 +10,10 @@ const noteSchema = new mongoose.Schema({
     content: {
         type: String
     },
-    user: [{
+    user: {
         type: ObjectId,
         ref: "User"
-    }],
+    },
 });
 
 module.exports = mongoose.model("Note", noteSchema);
