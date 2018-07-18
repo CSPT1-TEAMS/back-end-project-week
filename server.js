@@ -17,7 +17,7 @@ mongoose.connect("mongodb://ravanibhavik:asdfgf1234@ds239911.mlab.com:39911/back
         console.log(">>> Error Connecting to Database <<<")
     })
 
-server.get("/", (req, res) => {
+server.get("/notes", (req, res) => {
     Note.find({})
         .then(notes => {
             return res.status(200).json(notes)
@@ -36,5 +36,3 @@ server.post("/notes/new", (req, res) => {
             res.status(500).json({errorMessage: 'Unable to add note.'})
         })
 })
-
-
