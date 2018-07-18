@@ -13,7 +13,16 @@ router.route('/')
         res.status(500).json(error);
       })
   })
-  .post()
+  .post((req, res) => {
+    const note = req.body;
+    Note.create(note)
+      .then(note => {
+        res.status(201).json(note)
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      })
+  })
 
 router.route('/:id')
   .get()
