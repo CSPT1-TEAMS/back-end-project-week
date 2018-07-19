@@ -115,7 +115,46 @@ describe('Server API', () => {
   });
 
   describe('PUT', () => {
+    const modified = {
+      title: 'Note 1',
+      content: 'Change this notes texts'
+    }
 
+    it('should return a success status of 200', async() => {
+      const response = await request(server).get('/api/notes')
+      const note = response.body[0];
+      await request(server)
+        .put(`/api/notes/${note._id}`)
+        .send(modified)
+        .expect(200)
+    });
+
+    it('should return the note that was updated', async() => {
+      const response = await request(server).get('/api/notes')
+      const note = response.body[0];
+      const newResponse = await request(server)
+        .put(`/api/notes/${note._id}`)
+        .send(modified)
+      expect(newResponse.body).toMatchObject(modified);
+    })
+
+    it('should return a failure status of 500 if invalid data is given', async() => {
+      const id = '5b4a435988a2ca366e40aa8'
+      await request(server)
+        .put(`/api/notes/${id}`)
+        .send(modified)
+        .expect(500)
+    })
+
+    it('should return a failure of 404 if note does note exist', async () => {
+      const response = await request(server).get('/api/notes')
+      const note = response.body[0];
+      await request(server).delete(`/api/notes/${note._id}`)
+      await request(server)
+        .put(`/api/notes/${note._id}`)
+        .send(modified)
+        .expect(404)
+    })
   });
 
   describe('DELETE', () => {
