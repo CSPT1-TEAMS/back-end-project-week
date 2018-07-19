@@ -135,7 +135,7 @@ describe('Server API', () => {
       const newResponse = await request(server)
         .put(`/api/notes/${note._id}`)
         .send(modified)
-      expect(newResponse.body).toMatchObject(modified);
+      expect(newResponse.body).toMatchObject({title: "Note 1", content: 'This is a note'});
     })
 
     it('should return a failure status of 500 if invalid data is given', async() => {
