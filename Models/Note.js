@@ -11,12 +11,16 @@ const note = {
     type: String,
     required: true,
     maxlength: 99
-  }
+  },
+  // id: {
+  //   type: number,
+  //   default: Date.now()
+  // }
 }
 
 const options = {
   timestamps: true
 }
 
-const schemaNotes = new.mongoose.Schema(note, options);
+const schemaNotes = new mongoose.Schema(note, options);
 module.exports = mongoose.model('Note', schemaNotes);
