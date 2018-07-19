@@ -47,4 +47,24 @@ server.put("/notes/edit/:id", (req, res) => {
                 return res.status(200).json(note)
             }
         })
+        .catch(error => {
+            return res.status(500).json({
+                errorMessage: "Something went wrong."
+            })
+        })
+})
+
+server.delete("/notes/delete/:id", (req, res) => {
+    const { id } = req.params
+    Note.findByIdAndRemove(id)
+        .then(note => {
+            if (note === null) {
+                return res.status(404).json({message: `Unable to find note with Id ${id}`})
+            } else {
+                return res.sendStatus(204).json({message: 'Note deleted.'})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({errorMessage: "Something went wrong."})
+        })
 })
