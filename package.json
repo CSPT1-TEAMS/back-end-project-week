@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.16.3",
+    "git": "^0.1.5",
+    "node": "^10.6.0",
+    "npm": "^6.2.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": "8.9.3"
+  }
+}
