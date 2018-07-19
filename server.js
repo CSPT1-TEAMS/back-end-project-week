@@ -27,6 +27,23 @@ server.get("/notes", (req, res) => {
         })
 })
 
+server.get("/notes/:id", (req, res) => {
+    const { id } = req.params
+    Note.findById(id)
+        .then(note => {
+            if (note === null) {
+                return res.status(404).json({message: `Unable to find note with id: ${id}`})
+            } else {
+                return res.status(200).json(note)
+            }
+        })
+        .catch(error => {
+            return res.status(500).json({
+                errorMessage: "Valid id is required."
+            })
+        })
+})
+
 server.post("/notes/new", (req, res) => {
     Note.create(req.body)
         .then(newNote => {
