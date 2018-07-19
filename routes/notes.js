@@ -38,7 +38,20 @@ router.route('/:id')
         res.status(500).json(error)
       })
   })
-  .put()
+  .put((req, res) => {
+    const { id } = req.params;
+    const { updated } = req.body;
+    Note.findByIdAndUpdate(id, updated)
+      .then(note => {
+        if (note === null) {
+          return res.status(404).json({msg: 'Note with specified ID does not exist'})
+        }
+        res.status(200).json(note)
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      })
+  })
   .delete((req, res) => {
     const { id } = req.params;
     Note.findByIdAndRemove(id)
