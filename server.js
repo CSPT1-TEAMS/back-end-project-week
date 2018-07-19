@@ -17,6 +17,9 @@ server.get('/', (req, res) => {
   res.json({message: "Connected to server!"})
 });
 server.use('/notes', noteEndpoints);
-//server.use('/user', userEndpoints);
+// server.use('/user', userEndpoints);
+console.log("user endpoints", userEndpoints);
+console.log("note end points", noteEndpoints);
+console.log("hello console!");
 
 module.exports = server;

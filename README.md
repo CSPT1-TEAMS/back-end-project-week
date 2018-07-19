@@ -1,7 +1,7 @@
 My Trello: https://trello.com/b/pYlW6ToH/lambda-notes-backend
 
 
-My Heroku URL:
+My Heroku URL: https://dashboard.heroku.com/apps/back-end-week
 
 
 ## Trello Set Up:
