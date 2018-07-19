@@ -61,7 +61,7 @@ server.delete("/notes/delete/:id", (req, res) => {
             if (note === null) {
                 return res.status(404).json({message: `Unable to find note with Id ${id}`})
             } else {
-                return res.sendStatus(204).json({message: 'Note deleted.'})
+                return res.status(204).json({message: 'Note deleted.'})
             }
         })
         .catch(error => {
