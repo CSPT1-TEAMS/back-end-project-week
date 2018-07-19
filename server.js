@@ -39,12 +39,13 @@ server.post("/notes/new", (req, res) => {
 
 server.put("/notes/edit/:id", (req, res) => {
     const { id } = req.params
+    const { title, content } = req.body
     Note.findByIdAndUpdate(id, req.body)
         .then(note => {
             if (note === null) {
                 return res.status(404).json({message: `Unable to find note with Id ${id}`})
             } else {
-                return res.status(200).json(note)
+                return res.status(200).json({...note.toObject(), title, content })
             }
         })
         .catch(error => {
