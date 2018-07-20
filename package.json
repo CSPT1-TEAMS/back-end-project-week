@@ -1,35 +1,23 @@
 {
-  "name": "heroku-playground",
+  "name": "back-end-project-week",
   "version": "1.0.0",
-  "description": "",
-  "engines": {
-    "node": "8.11.2"
-  },
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --verbose",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "test": "jest --watch --verbose"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NewbieWanKenobi/back-end-project-week.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NewbieWanKenobi/back-end-project-week/issues"
-  },
-  "homepage": "https://github.com/NewbieWanKenobi/back-end-project-week#readme",
+  "repository": "https://github.com/NewbieWanKenobi/back-end-project-week",
+  "author": "SeanValdivia",
+  "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
+    "mongoose": "^5.2.4"
+  },
+  "devDependencies": {
     "jest": "^23.4.1",
-    "mongoose": "^5.2.4",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.18.3",
     "supertest": "^3.1.0"
   }
 }
+
