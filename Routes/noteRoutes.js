@@ -13,7 +13,7 @@ router.get('/notes', (req, res) => {
 })
     .post('/notes/new', async (req, res) => {
 
-        const user = await User.findById('5b511eff92daed32d861d0db')
+        const user = await User.findById(/* insert token here */)
         const createdNote = await Note.create(req.body)
         user.notes.push(createdNote)
         await user.save()

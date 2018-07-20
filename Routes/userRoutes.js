@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { createToken } = require('../_config/authFunction');
 const User = require('../Models/userModel');
 const Note = require('../Models/noteModel');
 
@@ -16,6 +17,32 @@ router.post('/register', (req, res) => {
             res.status(500).json(err);
         });
     }
+    })
+
+    .post('/user/login', (req, res) => {
+        const { username, password } = req.body;
+        if(!username || !password) {
+            res.status(401).json({ Error: 'Enter log-in credentials (username and password).' })
+        }
+
+        User.findOne({ username })
+            .then(user => {
+                user.verifyPW(password)
+                    .then(validatedUser => {
+                        if(validatedUser) {
+                            // create token here
+                            // return user and token/ msg
+                        } else {
+                            res.status(401).json({ Error: 'Ah ah ah, you did not say the magic word!' })
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).json(err)
+                    })
+                    .catch(err => {
+                        res.status(500).json(err)
+                    })
+            })
     })
     
     .get('/users', (req, res) => {
