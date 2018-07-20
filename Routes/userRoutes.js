@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createToken } = require('../_config/authFunction');
+const { createToken, verifyCred } = require('../_config/authFunction');
 const User = require('../Models/userModel');
 const Note = require('../Models/noteModel');
 
@@ -27,11 +27,11 @@ router.post('/register', (req, res) => {
 
         User.findOne({ username })
             .then(user => {
-                user.verifyPW(password)
+                user.verifyPassword(password)
                     .then(validatedUser => {
                         if(validatedUser) {
-                            // create token here
-                            // return user and token/ msg
+                            const token = createToken(user)
+                            res.status(201).json({ user, token })
                         } else {
                             res.status(401).json({ Error: 'Ah ah ah, you did not say the magic word!' })
                         }
@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
             })
     })
     
-    .get('/users', (req, res) => {
+    .get('/users', verifyCred, (req, res) => {
         User.find()
         .select('-password')
         .then(users => {

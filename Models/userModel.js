@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function(next) {
-    bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
+    return bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
         if(err) {
             return next(err);
         }
@@ -32,8 +32,8 @@ userSchema.pre('save', function(next) {
     })
 });
 
-userSchema.verifyPW = function(plainTextPW, cb) {
-    return bcrypt.compare(plainTextPW, this.password, cb)
+userSchema.methods.verifyPassword = function(passwordGuess) {
+    return bcrypt.compare(passwordGuess, this.password)
 };
 
 module.exports = mongoose.model("User", userSchema);
