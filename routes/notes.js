@@ -17,7 +17,13 @@ router.route('/')
     const note = req.body;
     Note.create(note)
       .then(note => {
-        res.status(201).json(note)
+        Note.find()
+          .then(notes => {
+            res.status(200).json(notes);
+          })
+          .catch(error => {
+            res.status(500).json(error)
+          })
       })
       .catch(error => {
         res.status(500).json(error);
@@ -40,13 +46,19 @@ router.route('/:id')
   })
   .put((req, res) => {
     const { id } = req.params;
-    const { updated } = req.body;
-    Note.findByIdAndUpdate(id, updated)
+    const updated  = req.body;
+    Note.findByIdAndUpdate(id, updated, {new: true})
       .then(note => {
         if (note === null) {
           return res.status(404).json({msg: 'Note with specified ID does not exist'})
         }
-        res.status(200).json(note)
+        Note.find()
+          .then(notes => {
+            res.status(200).json(notes);
+          })
+          .catch(error => {
+            res.status(500).json(error)
+          })
       })
       .catch(error => {
         res.status(500).json(error);
@@ -59,7 +71,13 @@ router.route('/:id')
         if (note === null) {
           return res.status(404).json({error: "Note with specified ID does not exist"})
         }
-        res.status(200).json(note);
+        Note.find()
+          .then(notes => {
+            res.status(200).json(notes);
+          })
+          .catch(error => {
+            res.status(500).json(error);
+          })
       })
       .catch(error => {
         res.status(500).json(error);
