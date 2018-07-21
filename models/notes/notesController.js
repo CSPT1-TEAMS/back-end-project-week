@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Notes = require('./note.js');
 //get all
 
-let notId = Notes.length
+let noteId = Notes.length
 
 router.route('/notes')
     .get((req, res) => {
@@ -42,11 +42,34 @@ router.route('/note/:id')
 
 router.route('/notes')
     .post((req, res) => {
+      const { title, content } = req.body;
+      const newNote = {id: noteId, title, body };
+      Notes.push(newNote)
+      noteId++;
+      res.status(201).json(notes)
+    });
 
+router.route('/note/:id')
+    .put((req, res) => {
+        const {title, content, id}
+        let note = Notes.filter(note => noteId === id);
+        Notes.splice(id, 1, {id: Number(id), title, content})
+        res.status(201).json(Notes);
+
+    //need to change this if I do logged in users and access
     })
-    //app.get(/notes)
-    //app.put('./note/:id)
-    //app.post('/notes')
+
+router.route('/note/:id')
+    .delete((req, res) => {
+        const { id } = req.params;
+        const foundNote = Notes.find(note => note.id == id);
+    if(foundNote) {
+        const noteremoved = {...foundNote}
+        Notes = Notes.filter(note => note.id != id);
+        res.status(200).json({ noteremoved });
+    }
+    })
+
     //app.delete('/note/:id')
 
 
