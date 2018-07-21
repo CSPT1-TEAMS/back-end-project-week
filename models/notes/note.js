@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
 const note = {
+    user: {
+      username: {
+        type: String,
+        unique: true
+      }  
+    },
     title: {
         type: String,
         required: [true, 'Title is required']
