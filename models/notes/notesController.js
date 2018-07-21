@@ -43,7 +43,7 @@ router.route('/note/:id')
 router.route('/notes')
     .post((req, res) => {
       const { title, content } = req.body;
-      const newNote = {id: noteId, title, body };
+      const newNote = {id: noteId, title, content };
       Notes.push(newNote)
       noteId++;
       res.status(201).json(notes)
@@ -51,7 +51,7 @@ router.route('/notes')
 
 router.route('/note/:id')
     .put((req, res) => {
-        const {title, content, id}
+        const {title, content, id} = req.body;
         let note = Notes.filter(note => noteId === id);
         Notes.splice(id, 1, {id: Number(id), title, content})
         res.status(201).json(Notes);
