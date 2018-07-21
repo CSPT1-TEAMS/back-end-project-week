@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const helmet = require('helmit');
+const helmet = require('helmet');
 const PORT = process.env.PORT || 5000
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/notesdb')
   return error;
 })
 
-const notesController = require('./notes/notesController');
+const notesController = require('./models/notes/notesController');
 
 const server = express()
 server.use(helmet());
@@ -31,6 +31,6 @@ server
   // res.render('pages/index')
 )
 
-server.use('/api/', notesController);
+server.use('/', notesController);
   server
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -8,6 +8,10 @@ const note = {
     content: {
         type: String,
         required: [true, 'content is required']
+    },
+    created : {
+        type: Date,
+        default: Date.now
     }
 }
 
