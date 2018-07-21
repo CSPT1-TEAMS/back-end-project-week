@@ -21,16 +21,16 @@ server.use(express.json());
 
 
 server
-  .use(express.static(path.join(__dirname, 'public'))
+  // .use(express.static(path.join(__dirname, 'public'))
   
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
+  // .set('views', path.join(__dirname, 'views'))
+  // .set('view engine', 'ejs')
   .get('/', (req, res) => 
   res.json({ hello: "world"})
   
   // res.render('pages/index')
 )
 
-// server.use('/api/', notesController);
-  // server
+server.use('/api/', notesController);
+  server
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
