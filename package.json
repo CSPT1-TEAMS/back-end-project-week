@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "This week you will be building a backend for a note taking app called \"Lambda Notes.\"",
   "main": "index.js",
-  "scripts": {
-    "test": "jest --watch --verbose",
-    "start": "nodemon index.js"
+  "engines": {
+    "node": "8.11.3"
   },
-  "jest": {
-    "testEnvironment": "node"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NewbieWanKenobi/back-end-project-week"
+    "url": "git+https://github.com/NewbieWanKenobi/back-end-project-week.git"
   },
   "keywords": [],
   "author": "",
@@ -20,17 +19,5 @@
   "bugs": {
     "url": "https://github.com/NewbieWanKenobi/back-end-project-week/issues"
   },
-  "homepage": "https://github.com/NewbieWanKenobi/back-end-project-week#readme",
-  "dependencies": {
-    "bcrypt": "^3.0.0",
-    "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "helmet": "^3.12.1",
-    "jest": "^23.4.1",
-    "mongoose": "^5.2.4",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.18.3",
-    "supertest": "^3.1.0"
-  }
+  "homepage": "https://github.com/NewbieWanKenobi/back-end-project-week#readme"
 }
