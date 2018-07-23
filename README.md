@@ -22,18 +22,18 @@ It is suggested that you deploy the server and database first, before you underg
 
 Once you have empty projects deployed to these platforms, they can be easily updated with the code you implement as you write it. Additionally, it is recommended that you keep your front end and backend codebases in separate github repos, not under a single umbrella repo. This helps with separation of concerns, plus it helps with deploying, since the different parts of your full-stack codebase need to live on different platforms.
 
-* [ ] Create a Database for your app
-* [ ] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
-* [ ] Deploy your application to the web
-* [ ] Create a Node app and connect it to your database
-* [ ] Store Notes in your Database
+* [x] Create a Database for your app
+* [x] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
+* [x] Deploy your application to the web
+* [x] Create a Node app and connect it to your database
+* [x] Store Notes in your Database
 
 Build an API Endpoint for each of the following, and connect it to your React App. These should all be read from your Database and scoped to the logged in user.
-* [ ] Display a list of notes
-* [ ] Create a note with a title and content
-* [ ] View an existing note
-* [ ] Edit an existing note
-* [ ] Delete an existing note
+* [x] Display a list of notes
+* [x] Create a note with a title and content
+* [x] View an existing note
+* [x] Edit an existing note
+* [x] Delete an existing note
 * [ ] Link up your Front End Project to your new and improved backend
 
 Upon your first commit, please submit a Pull Request and add _both_ the **Trello Set Up** and **Backend MVP Features** Task lists to your first Pull Request comment:
@@ -49,19 +49,19 @@ Upon your first commit, please submit a Pull Request and add _both_ the **Trello
 * [x] Add your Trello URL to your project's README.md file.  Commit the change, push it to your repository & submit a pull request
 
 ## Backend MVP Features:
-* [ ] Create a Database for your app
-* [ ] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
-* [ ] Deploy your application to the web
-* [ ] Create a Node app and connect it to your database
-* [ ] Store Notes in your Database
+* [x] Create a Database for your app
+* [x] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
+* [x] Deploy your application to the web
+* [x] Create a Node app and connect it to your database
+* [x] Store Notes in your Database
 
 Build an API Endpoint in your Node App for each of the following, and connect them to your React App. These should all be read from your Database and scoped to the logged in user.
-* [ ] Display a list of notes
-* [ ] Create a note with a title and content
-* [ ] View an existing note
-* [ ] Edit an existing note
-* [ ] Delete an existing note
-* [ ] Link up your Front End Project to your new and improved backend
+* [x] Display a list of notes
+* [x] Create a note with a title and content
+* [x] View an existing note
+* [x] Edit an existing note
+* [x] Delete an existing note
+* [x] Link up your Front End Project to your new and improved backend
 ```
 
 ***
@@ -92,4 +92,3 @@ You will notice that this repository does not have any starter code.  This is on
 ## Trello Account
 
 https://trello.com/b/kNDxrsjn/lambda-notesbackend-bhavik-ravani
-

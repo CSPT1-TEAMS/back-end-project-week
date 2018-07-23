@@ -1,10 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 const server = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
 const Note = require('./models/Notes')
 
 server.use(express.json())
+server.use(cors())
 
 mongoose.connect("mongodb://ravanibhavik:asdfgf1234@ds239911.mlab.com:39911/backend-project")
     .then(() => {
@@ -45,6 +47,7 @@ server.get("/notes/:id", (req, res) => {
 })
 
 server.post("/notes/new", (req, res) => {
+    console.log(req.body)
     Note.create(req.body)
         .then(newNote => {
             res.status(201).json(newNote)
