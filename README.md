@@ -16,7 +16,7 @@ My Heroku URL: https://dashboard.heroku.com/apps/back-end-week
 ## Backend MVP Features:
 * [X] Create a Database for your app
 * [X] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
-* [ ] Deploy your application to the web
+* [X] Deploy your application to the web
 * [X] Create a Node app and connect it to your database
 * [X] Store Notes in your Database
 
