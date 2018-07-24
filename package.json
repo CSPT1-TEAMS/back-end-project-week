@@ -1,0 +1,32 @@
+{
+    "name": "backend-project",
+    "version": "0.1.0",
+    "description": "Node backend project using express and mongo",
+    "engines": {
+        "node": "8.11.1"
+    },
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "test": "node test.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "mongoose": "^5.2.4"
+    },
+    "devDependencies": {
+        "request": "^2.81.0",
+        "tape": "^4.7.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/heroku/node-js-getting-started"
+    },
+    "keywords": [
+        "node",
+        "heroku",
+        "express"
+    ],
+    "license": "MIT"
+}
