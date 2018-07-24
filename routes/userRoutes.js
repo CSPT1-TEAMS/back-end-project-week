@@ -15,9 +15,22 @@ server.get('/', (req, res) => {
         });
 });
 
-
+server.get('/:id', (req, res) => {
+    const id = req.params.id;
+    User.findById(id)
+      .then(user => {
+          if (!user) {
+              return res.status(404).json({error: "User does not exist!"});
+          }
+          res.json({ user });
+      })
+      .catch(err => {
+          res.status(500).json({message: "Error retrieving user from database!", error: err});
+      })
+})
 
 server.post('/signup', (req, res) => {
+    console.log(req.body);
     User.create(req.body)
         .then(user => {
             res.status(201).json(user);
