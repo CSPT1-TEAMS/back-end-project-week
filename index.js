@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const server = require('./server')
@@ -10,7 +10,8 @@ const options = {
 }
 
 mongoose
-    .connect(process.env.DB_HOST, options)
+    //.connect(process.env.DB_HOST, options)
+    .connect('mongodb://SeanValdivia:littleloki911@ds141671.mlab.com:41671/lambda-notes-sean')
     .then(() => {
         console.log('Connected to mongodb!!')
         server.listen(PORT, () => {
