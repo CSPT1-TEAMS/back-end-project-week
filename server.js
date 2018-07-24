@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
 const Note = require('./models/Notes')
 const NotesRouter = require('./Routers/NotesRouter')
-const UserRouter = require('./Routers/UserRouter')
 
 server.use(express.json())
 server.use(cors())
