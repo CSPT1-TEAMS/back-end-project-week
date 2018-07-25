@@ -99,11 +99,12 @@ describe('Server API', () => {
         .expect(201);
     })
 
-    it('should return the Note that was posted', async() => {
+    it('should return a list of notes', async() => {
       const response = await request(server)
         .post('/api/notes')
         .send(note);
-      expect(response.body).toMatchObject(note);
+      expect(response.body).toHaveLength(3);
+      expect(response.body[2]).toMatchObject(note)
     })
 
     it('should return a failure status of 500 if invalid data is given', async() => {
@@ -129,13 +130,14 @@ describe('Server API', () => {
         .expect(200)
     });
 
-    it('should return the note that was updated', async() => {
+    it('should return the list of notes once updated', async() => {
       const response = await request(server).get('/api/notes')
       const note = response.body[0];
       const newResponse = await request(server)
         .put(`/api/notes/${note._id}`)
         .send(modified)
-      expect(newResponse.body).toMatchObject({title: "Note 1", content: 'This is a note'});
+      expect(newResponse.body).toHaveLength(2);
+      expect(newResponse.body[0]).toMatchObject(modified)
     })
 
     it('should return a failure status of 500 if invalid data is given', async() => {
@@ -166,11 +168,12 @@ describe('Server API', () => {
         .expect(200)
     })
 
-    it('should return the note that was delete', async () => {
+    it('should return the list of notes after deletion', async () => {
       const response = await request(server).get('/api/notes')
       const note = response.body[0];
       const newResponse = await request(server).delete(`/api/notes/${note._id}`);
-      expect(newResponse.body).toMatchObject({ title: "Note 1", content: "This is a note"})
+      expect(newResponse.body).toHaveLength(1);
+      expect(newResponse.body[0]).toMatchObject({ title: 'Note 2', content: 'This is another note'})
     })
 
     it('should return a failure status of 500 if invalid data is given', async() => {

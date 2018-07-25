@@ -19,7 +19,7 @@ router.route('/')
       .then(note => {
         Note.find()
           .then(notes => {
-            res.status(200).json(notes);
+            res.status(201).json(notes);
           })
           .catch(error => {
             res.status(500).json(error)
