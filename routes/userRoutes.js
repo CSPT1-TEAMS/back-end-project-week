@@ -42,4 +42,27 @@ server.post('/signup', (req, res) => {
         });
 });
 
+server.put('/edit/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+
+    // const options = {
+    //     new: true,
+    // };
+
+    User.findByIdAndUpdate(id, changes)
+        .then(user => {
+            if (note) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({ message: 'There was a problem finding that user', error: err });
+        });
+});
+
 module.exports = server;
