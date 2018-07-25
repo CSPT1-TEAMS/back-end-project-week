@@ -1,4 +1,10 @@
 # Back End Project Week
+Trello Board URL: https://trello.com/b/wfGGPfPS/lambda-notesbackend-alex-botello
+
+Front End Deployment: https://priceless-davinci-8c6ef5.netlify.com/
+
+Back End Deployment: https://lambda-notes-alex.herokuapp.com/
+
 This week you will be building a backend for a note taking app called "Lambda Notes."
 
 You are to treat this week as if you are working at a company and the instructor is your client.  The teaching assistants are acting as your project managers and will be your main support throughout the week.
@@ -18,9 +24,9 @@ The main objective of this week is to develop a backend to support the LambdaNot
 * [ ] Add your Trello URL to your project's README.md file.  Commit the change, push it to your repository & submit a pull request
 
 ## Backend MVP Features:
-It is suggested that you deploy the server and database first, before you undergo implementing the logic. Doing this makes the deployment process much simpler, since there's no code yet to complicate the deployment step. We recommend you deploy your server to [Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction), and your Mongo database to [mlab](https://docs.mlab.com/). The recommended deployment site for the front end is [netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/). 
+It is suggested that you deploy the server and database first, before you undergo implementing the logic. Doing this makes the deployment process much simpler, since there's no code yet to complicate the deployment step. We recommend you deploy your server to [Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction), and your Mongo database to [mlab](https://docs.mlab.com/). The recommended deployment site for the front end is [netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/).
 
-Once you have empty projects deployed to these platforms, they can be easily updated with the code you implement as you write it. Additionally, it is recommended that you keep your front end and backend codebases in separate github repos, not under a single umbrella repo. This helps with separation of concerns, plus it helps with deploying, since the different parts of your full-stack codebase need to live on different platforms. 
+Once you have empty projects deployed to these platforms, they can be easily updated with the code you implement as you write it. Additionally, it is recommended that you keep your front end and backend codebases in separate github repos, not under a single umbrella repo. This helps with separation of concerns, plus it helps with deploying, since the different parts of your full-stack codebase need to live on different platforms.
 
 * [ ] Create a Database for your app
 * [ ] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).

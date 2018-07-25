@@ -1,0 +1,22 @@
+{
+  "name": "back-end-project-week",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --watch --verbose"
+  },
+  "repository": "git@github.com:alexbotello/back-end-project-week.git",
+  "author": "Alexander <alexander.botello@g.austincc.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "mongoose": "^5.2.4"
+  },
+  "devDependencies": {
+    "jest": "^23.4.1",
+    "supertest": "^3.1.0"
+  }
+}
