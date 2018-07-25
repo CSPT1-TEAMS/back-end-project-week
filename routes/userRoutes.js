@@ -53,7 +53,7 @@ server.put('/edit/:id', (req, res) => {
     User.findByIdAndUpdate(id, changes, options)
         .then(user => {
             if (note) {
-                res.status(200).json(user);
+                return res.status(200).json(user);
             } else {
                 res.status(404).json({ message: 'User not found' });
             }
