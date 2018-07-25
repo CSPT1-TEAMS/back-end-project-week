@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const note = {
-    user: {
+    
       username: {
         type: String,
         unique: true
-      }  
-    },
+    }  
+    ,
     title: {
         type: String,
         required: [true, 'Title is required']
@@ -24,3 +24,5 @@ const note = {
 const noteSchema = new mongoose.Schema(note);
 
 module.exports = mongoose.model('Note', noteSchema);
+
+
