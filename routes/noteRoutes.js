@@ -74,20 +74,16 @@ server.put('/edit/:id', (req, res) => {
 
 server.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
+    console.log(id);
+    Note.remove(id)
+        .then(response => {
+            if (response === 0) {
+                return res.status(404).json({ message: `Note ${id} not found in database` })
+            }
+            res.status(200).json({ message: "===NOTE DELETED===" })
+        })
+        .catch(err => res.status(500).json({ err }))
 
-    if (!id) {
-        res.status(422).json({ message: 'You need to give me an ID' });
-    } else {
-        Note.findByIdAndRemove(id)
-            .then(note => {
-                if (note) {
-                    res.status(204).end();
-                } else {
-                    res.status(404).json({ message: 'Note not found' });
-                }
-            })
-            .catch(err => res.status(500).json(err));
-    }
-});
+})
 
 module.exports = server;
