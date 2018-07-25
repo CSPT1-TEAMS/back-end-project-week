@@ -1,5 +1,7 @@
 # Back End Project Week
 Trello Board URL: https://trello.com/b/wfGGPfPS/lambda-notesbackend-alex-botello
+Front End Deployment: https://priceless-davinci-8c6ef5.netlify.com/
+Back End Deployment: https://lambda-notes-alex.herokuapp.com/
 
 This week you will be building a backend for a note taking app called "Lambda Notes."
 
