@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 
-// const noteRoutes = require('./routes/noteRoutes');
-// const userRoutes = require('./routes/userRoutes');
+const noteRoutes = require('./routes/notes');
+const userRoutes = require('./routes/users');
 
 const server = express();
 
@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
     res.json({ msg: "Connected" })
 });
 
-// server.use('/notes', noteRoutes);
-// server.use('/user', userRoutes);
+server.use('/notes', noteRoutes);
+server.use('/user', userRoutes);
 
 module.exports = server; 
