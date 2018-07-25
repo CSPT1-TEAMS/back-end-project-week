@@ -46,11 +46,11 @@ server.put('/edit/:id', (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
-    // const options = {
-    //     new: true,
-    // };
+    const options = {
+        new: true,
+    };
 
-    User.findByIdAndUpdate(id, changes)
+    User.findByIdAndUpdate(id, changes, options)
         .then(user => {
             if (note) {
                 res.status(200).json(user);
