@@ -1,3 +1,14 @@
+#Trello link url:
+https://trello.com/b/iVpivrcl/back-end-project
+
+#netlify link url:
+https://blissful-edison-c5c593.netlify.com
+
+#lab link url:
+https://mlab.com/databases/arey-back-end-project
+
+
+
 # Back End Project Week
 This week you will be building a backend for a note taking app called "Lambda Notes."
 
