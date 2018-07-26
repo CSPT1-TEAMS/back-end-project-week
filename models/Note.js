@@ -12,6 +12,7 @@ const note = {
         required: true,
         maxlength: 100
     }
+    //postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 }
 
 const options = {
