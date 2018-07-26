@@ -3,7 +3,7 @@ const Note = require('../Models/noteModel');
 const User = require('../Models/userModel');
 const { verifyCred } = require('../_config/authFunction');
 
-router.get('/notes', (req, res) => {
+router.get('/notes', verifyCred,  (req, res) => {
     Note.find()
         .then(foundNotes => {
             res.status(200).json(foundNotes);
@@ -12,7 +12,7 @@ router.get('/notes', (req, res) => {
             res.status(500).json(err);
         })
 })
-    .post('/notes/new', verifyCred, async (req, res) => {
+    .post('/notes', verifyCred, async (req, res) => {
         const { decodedPayload } = req;
 
         const user = await User.findById(decodedPayload.sub)
@@ -29,7 +29,7 @@ router.get('/notes', (req, res) => {
             })
     })
 
-    .get('/notes/:id', (req,res) => {
+    .get('/notes/:id', verifyCred, (req,res) => {
         const { id } = req.params;
 
             Note.findById(id)
@@ -45,7 +45,7 @@ router.get('/notes', (req, res) => {
             })
     })
 
-    .put('/notes/edit/:id', (req, res) => {
+    .put('/notes/edit/:id', verifyCred, (req, res) => {
         const { id } = req.params;
         const { title, content } = req.body;
 
@@ -62,7 +62,7 @@ router.get('/notes', (req, res) => {
             })
     })
 
-    .delete('/notes/remove/:id', (req, res) => {
+    .delete('/notes/remove/:id', verifyCred, (req, res) => {
         const { id } = req.params;
         Note.findByIdAndRemove(id)
             .then(note => {

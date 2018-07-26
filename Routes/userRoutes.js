@@ -45,29 +45,29 @@ router.post('/register', (req, res) => {
             })
     })
     
-    .get('/users', verifyCred, (req, res) => {
-        User.find()
-        .select('-password')
-        .then(users => {
-            res.status(200).json(users);
-        })
-        .catch(err => {
-            res.status(500).json(err);
-        })
-    })
+    // .get('/users', verifyCred, (req, res) => {
+    //     User.find()
+    //     .select('-password')
+    //     .then(users => {
+    //         res.status(200).json(users);
+    //     })
+    //     .catch(err => {
+    //         res.status(500).json(err);
+    //     })
+    // })
 
-    .get('/users/:id', (req, res) => {
-        const { id } = req.params;
+    // .get('/users/:id', verifyCred, (req, res) => {
+    //     const { id } = req.params;
 
-        User.findById(id)
-        .select('-password')
-        .populate('notes')
-        .then(user => {
-            res.status(200).json(user);
-        })
-        .catch(err => {
-            res.status(500).json(err);
-        })
-    })
+    //     User.findById(id)
+    //     .select('-password')
+    //     .populate('notes')
+    //     .then(user => {
+    //         res.status(200).json(user);
+    //     })
+    //     .catch(err => {
+    //         res.status(500).json(err);
+    //     })
+    // })
 
     module.exports = router;
