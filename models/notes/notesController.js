@@ -18,14 +18,17 @@ router.route('/')
                 "title": "testNote",
                 "content": "long form content"
             }
-            const createNote = new Notes(testNote);
-            Notes.save(createNote);
+            //const createNote = new Notes(testNote);
+            Notes.create(testNote).then(note => {
+                res.status(200).json(note)
+            });
+            return
         }
-            res.status(200).json(notes)
+            res.status(200).json(note)
         })
         .catch( err => {
           
-            res.status(500).json({err})
+            res.status(500).json({err: err.message})
         })
     })
     .post((req, res) => {
