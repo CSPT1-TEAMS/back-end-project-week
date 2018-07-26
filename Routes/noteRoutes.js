@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Note = require('../Models/noteModel');
 const User = require('../Models/userModel');
+const { verifyCred } = require('../_config/authFunction');
 
 router.get('/notes', (req, res) => {
     Note.find()
@@ -11,9 +12,10 @@ router.get('/notes', (req, res) => {
             res.status(500).json(err);
         })
 })
-    .post('/notes/new', async (req, res) => {
+    .post('/notes/new', verifyCred, async (req, res) => {
+        const { decodedPayload } = req;
 
-        const user = await User.findById(/* insert token here */)
+        const user = await User.findById(decodedPayload.sub)
         const createdNote = await Note.create(req.body)
         user.notes.push(createdNote)
         await user.save()
