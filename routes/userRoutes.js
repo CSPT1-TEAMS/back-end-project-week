@@ -1,11 +1,11 @@
 const server = require('express').Router();
-const cors = require('cors');
-const User = require('../models/User');
 
-server.use(cors());
+const User = require('../models/User');
+const {createToken} = require('./auth')
+
 
 server.get('/', (req, res) => {
-    User.find()
+    User.find().populate('notes')
         .then(users => {
             res.status(200).json(users);
         })
@@ -52,15 +52,17 @@ server.post('/login', (req, res) => {
                     .validatePassword(password)
                     .then(passwordsMatch => {
                         if (passwordsMatch) {
-                            // const token = createToken(user);
-                            res.status(200).json(passwordsMatch);
+                            const token = createToken(user);
+                            // send token back to client
+                            res.status(200).json(token);
                         }
                         else {
                             res.status(401).send('Unauthorized.');
                         }
                     })
                     .catch(err => {
-                        res.status(500).json('Error validating credentials.');
+                        console.log(err);
+                        res.status(500).json(err.messsage);
                     })
             }
             else {

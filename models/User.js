@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 const User = new mongoose.Schema({
     email: {
         type: String,
@@ -17,7 +18,7 @@ const User = new mongoose.Schema({
         required: true,
         minlength: 8
     },
-    notes: [{type: ObjectId, ref: 'Note'}]
+    notes: [{type: mongoose.Schema.ObjectId, ref: 'Note'}]
 })
 
 User.pre('save', function (next) {
@@ -31,7 +32,7 @@ User.pre('save', function (next) {
     })
 })
 
-userSchema.methods.validatePassword = function (passAttempt) {
+User.methods.validatePassword = function (passAttempt) {
     return bcrypt.compare(passAttempt, this.password);
   };
 
