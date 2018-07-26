@@ -30,15 +30,15 @@ Once you have empty projects deployed to these platforms, they can be easily upd
 * [x] Design your models for your app. You should have a model for notes and for users. (The users model will come in handy when building out your stretch goals).
 * [x] Deploy your application to the web
 * [x] Create a Node app and connect it to your database
-* [ ] Store Notes in your Database
+* [x] Store Notes in your Database
 
 Build an API Endpoint for each of the following, and connect it to your React App. These should all be read from your Database and scoped to the logged in user.
-* [ ] Display a list of notes
+* [x] Display a list of notes
 * [ ] Create a note with a title and content
-* [ ] View an existing note
+* [x] View an existing note
 * [ ] Edit an existing note
 * [ ] Delete an existing note
-* [ ] Link up your Front End Project to your new and improved backend
+* [x] Link up your Front End Project to your new and improved backend
 
 Upon your first commit, please submit a Pull Request and add _both_ the **Trello Set Up** and **Backend MVP Features** Task lists to your first Pull Request comment:
 
