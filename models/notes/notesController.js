@@ -5,29 +5,26 @@ const Notes = require('./note.js');
 
 let noteId = Notes.length
 
-router.route('/notes')
+router.route('/')
     .get((req, res) => {
+        
         Notes.find()
         .then( notes => {
-
-            // const testNote = 
-            // {
-            //     "username": "Mr.T",
-            //     "title": "testNote",
-            //     "content": "long form content"
-            // }
-            console.log(testNote);
-            // if(notes === null) 
-            res.status(200).json(notes)
-        })
-        .catch( err => {
+            if(notes.length === 0) {
+                
             const testNote = 
             {
                 "username": "Mr.T",
                 "title": "testNote",
                 "content": "long form content"
             }
-            Notes.save(testNote);
+            const createNote = new Notes(testNote);
+            Notes.save(createNote);
+        }
+            res.status(200).json(notes)
+        })
+        .catch( err => {
+          
             res.status(500).json({err})
         })
     })
@@ -64,11 +61,14 @@ router.route('/note/:id')
     })
 
 
-router.route('/notes')
+router.route('/')
     .post((req, res) => {
       const { title, content } = req.body;
       const newNote = {id: noteId, title, content };
-      Notes.save(newNote)
+
+     
+
+      Notes.create(newNote)
       noteId++;
       res.status(201).json(Notes)
     });

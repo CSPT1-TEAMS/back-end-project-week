@@ -11,11 +11,15 @@ const mongoose = require('mongoose');
 //something
 //`mongodb://localhost:27017/localnotesdb`
 //`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnotesdb`
+
+
+
 mongoose.connect(`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnotesdb`)
 .then(
   console.log('connected to mongodb server online')
 )
 .catch(err => {
+  res.status(500).json(err)
   return console.log('something wrong with local mongo');
 })
 
@@ -38,6 +42,6 @@ server.use(express.json());
 //   // res.render('pages/index')
 // )
 
-server.use('/', notesController);
+server.use('/notes', notesController);
   server
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
