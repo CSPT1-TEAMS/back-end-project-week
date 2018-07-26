@@ -65,4 +65,22 @@ server.put('/edit/:id', (req, res) => {
         });
 });
 
+server.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        res.status(422).json({ message: 'You need to give me an ID' });
+    } else {
+        User.findByIdAndRemove(id)
+            .then(user => {
+                if (user) {
+                    res.status(204).end();
+                } else {
+                    res.status(404).json({ message: 'User not found' });
+                }
+            })
+            .catch(err => res.status(500).json(err));
+    }
+});
+
 module.exports = server;
