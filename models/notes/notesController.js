@@ -7,29 +7,29 @@ let noteId = Notes.length
 
 router.route('/')
     .get((req, res) => {
-        
+
         Notes.find()
-        .then( notes => {
-            if(notes.length === 0) {
-                
-            const testNote = 
-            {
-                "username": "Mr.T",
-                "title": "testNote",
-                "content": "long form content"
-            }
-            //const createNote = new Notes(testNote);
-            Notes.create(testNote).then(note => {
-                res.status(200).json(note)
-            });
-            return
-        }
-            res.status(200).json(note)
-        })
-        .catch( err => {
-          
-            res.status(500).json({err: err.message})
-        })
+            .then(notes => {
+                if (notes.length === 0) {
+
+                    const testNote =
+                    {
+                        "username": "Mr.T",
+                        "title": "testNote",
+                        "content": "long form content"
+                    }
+                    //const createNote = new Notes(testNote);
+                    Notes.create(testNote).then(note => {
+                        res.status(200).json(note)
+                    });
+                    return
+                }
+                res.status(200).json(notes)
+            })
+            .catch(err => {
+
+                res.status(500).json({ err: err.message })
+            })
     })
     .post((req, res) => {
         const { title, content } = req.body;
@@ -40,7 +40,7 @@ router.route('/')
                 res.status(201).json(note);
             })
             .catch(err => {
-                res.status(500).json({err})
+                res.status(500).json({ err })
             })
 
 
@@ -52,13 +52,13 @@ router.route('/note/:id')
     .get((req, res) => {
         //const { id } = req.params.id
         Notes.findById(req.params.id)
-        .then(note => {
-            res.status(201).json(note)
-        }
-        )
-        .catch(err => {
-            res.status(500).json(err)
-        })
+            .then(note => {
+                res.status(201).json(note)
+            }
+            )
+            .catch(err => {
+                res.status(500).json(err)
+            })
         //const note = Notes.filter(note => note.id.toString() === id)[0]
         //res.status(200).json(note)
     })
@@ -66,45 +66,45 @@ router.route('/note/:id')
 
 router.route('/')
     .post((req, res) => {
-      const { title, content } = req.body;
-      const newNote = {id: noteId, title, content };
+        const { title, content } = req.body;
+        const newNote = { id: noteId, title, content };
 
-     
 
-      Notes.create(newNote)
-      noteId++;
-      res.status(201).json(Notes)
+
+        Notes.create(newNote)
+        noteId++;
+        res.status(201).json(Notes)
     });
 
 router.route('/note/:id')
     .put((req, res) => {
         const { id } = req.params;
-        const {title, content} = req.body; 
+        const { title, content } = req.body;
         Notes.findByIdAndUpdate(id, req.body)
-        .then(note => {
-            res.status(201).json(note)
-        })
-        .catch(err => {
-            res.status(500).json(err);
-        })
+            .then(note => {
+                res.status(201).json(note)
+            })
+            .catch(err => {
+                res.status(500).json(err);
+            })
         //Notes.splice(id, 1, {id: Number(id), title, content})
         // res.status(201).json(Notes);
 
-    //need to change this if I do logged in users and access
+        //need to change this if I do logged in users and access
     })
 
 router.route('/note/:id')
     .delete((req, res) => {
         const { id } = req.params;
         const foundNote = Notes.find(note => note.id == id);
-    if(foundNote) {
-        const noteremoved = {...foundNote}
-        Notes = Notes.filter(note => note.id != id);
-        res.status(200).json({ noteremoved });
-    }
+        if (foundNote) {
+            const noteremoved = { ...foundNote }
+            Notes = Notes.filter(note => note.id != id);
+            res.status(200).json({ noteremoved });
+        }
     })
 
-    //app.delete('/note/:id')
+//app.delete('/note/:id')
 
 
 module.exports = router;
