@@ -8,6 +8,7 @@ const DB_PASS = process.env.DB_PASS;
 const cors = require('cors');
 const mongoose = require('mongoose');
 //declare routes used
+//something
 //`mongodb://localhost:27017/localnotesdb`
 //`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnotesdb`
 mongoose.connect(`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnotesdb`)
