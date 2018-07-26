@@ -1,5 +1,5 @@
 const server = require('express').Router();
-
+const User = require('../models/User');
 const Note = require('../models/Note');
 
 server.get('/', (req, res) => {
@@ -46,7 +46,7 @@ server.post('/create', (req, res) => {
 
 server.put('/edit/:id', (req, res) => {
     const { id } = req.params;
-    const changes = req.body;
+    const changes = req.body; 
 
     // //All we care about is the game title and id. Don't worry about genre or date.
     // if (!changes.title || !id) {
