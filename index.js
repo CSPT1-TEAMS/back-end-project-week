@@ -19,7 +19,7 @@ mongoose.connect(`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnote
   console.log('connected to mongodb server online')
 )
 .catch(err => {
-  res.status(500).json(err)
+  //res.status(500).json(err)
   return console.log('something wrong with local mongo');
 })
 
