@@ -39,13 +39,13 @@ router.route('/:id')
       })
   })
   .put((req, res) => {
-    const { _id } = req.params;
-    Note.findByIdAndUpdate(_id, req.body)
+    const { id } = req.params;
+    Note.findByIdAndUpdate(id, req.body)
       .then(note => {
         if (note === null) {
           return res.status(404).json({msg: 'Note with specified ID does not exist'})
         }
-        res.status(200).json({...req.body, _id})
+        res.status(200).json({...req.body, id})
       })
       .catch(error => {
         res.status(500).json(error);
