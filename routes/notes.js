@@ -40,7 +40,7 @@ router.route('/:id')
   })
   .put((req, res) => {
     const { id } = req.params;
-    Note.findByIdAndUpdate(id, req.body)
+    Note.findByIdAndUpdate(id, req.body, {new: true})
       .then(note => {
         if (note === null) {
           return res.status(404).json({msg: 'Note with specified ID does not exist'})
