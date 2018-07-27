@@ -1,10 +1,11 @@
 const server = require('express').Router();
 
 const User = require('../models/User');
-const {createToken} = require('./auth')
+const {createToken} = require('./auth');
+const {restricted} = require('./auth');
 
 
-server.get('/', (req, res) => {
+server.get('/', restricted, (req, res) => {
     User.find().populate('notes')
         .then(users => {
             res.status(200).json(users);
