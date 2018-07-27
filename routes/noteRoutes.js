@@ -5,18 +5,28 @@ const { restricted } = require('./auth');
 
 // need to change code so that only those notes
 // associated with logged in user are displayed
+// server.get('/', restricted, (req, res) => {
+//     console.log(req.batman);
+//     Note.find()
+//         .then(notes => {
+//             res.status(200).json(notes);
+//         })
+//         .catch(err => {
+//             res
+//                 .status(500)
+//                 .json({ message: 'There was a problem getting your notes', error: err });
+//         });
+// });
+
 server.get('/', restricted, (req, res) => {
-    console.log(req.batman);
-    Note.find()
-        .then(notes => {
-            res.status(200).json(notes);
-        })
-        .catch(err => {
-            res
-                .status(500)
-                .json({ message: 'There was a problem getting your notes', error: err });
-        });
-});
+    User.findOne({username: req.batman.username})
+      .then(notes => {
+          res.status(200).json(notes);
+      })
+      .catch(err => {
+          res.status(500).json({message: 'There was a problem getting your notes', error: err.message});
+      })
+})
 
 server.get('/:id', (req, res) => {
     const { id } = req.params;
@@ -40,7 +50,8 @@ server.get('/:id', (req, res) => {
 // has access to req and res
 // function stack in this case is '/create', restricted, and callback (req, res)...
 server.post('/create', restricted, (req, res) => {
-    console.log(req.batman);
+    // console.log(req.batman);
+    // so it looks for the user first
     User.findOne({ username: req.batman.username })
         .then(user => {
             console.log(user);

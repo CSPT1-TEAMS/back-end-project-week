@@ -4,7 +4,8 @@ const User = require('../models/User');
 const {createToken} = require('./auth');
 const {restricted} = require('./auth');
 
-
+// I don't like that a user can view all other users with his/her
+// valid token
 server.get('/', restricted, (req, res) => {
     User.find().populate('notes')
         .then(users => {
