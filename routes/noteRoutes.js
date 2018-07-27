@@ -19,7 +19,7 @@ const { restricted } = require('./auth');
 // });
 
 server.get('/', restricted, (req, res) => {
-    User.findOne({username: req.batman.username})
+    User.findOne({username: req.batman.username}).populate('notes')
       .then(user => {
           res.status(200).json(user.notes);
       })
