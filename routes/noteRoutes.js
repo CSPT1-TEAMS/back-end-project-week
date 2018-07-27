@@ -20,8 +20,8 @@ const { restricted } = require('./auth');
 
 server.get('/', restricted, (req, res) => {
     User.findOne({username: req.batman.username})
-      .then(notes => {
-          res.status(200).json(notes);
+      .then(user => {
+          res.status(200).json(user.notes);
       })
       .catch(err => {
           res.status(500).json({message: 'There was a problem getting your notes', error: err.message});
