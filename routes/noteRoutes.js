@@ -6,7 +6,8 @@ const { restricted } = require('./auth');
 // need to change code so that only those notes
 // associated with logged in user are displayed
 server.get('/', restricted, (req, res) => {
-    Note.find(req.batman)
+    console.log(req.batman);
+    Note.find()
         .then(notes => {
             res.status(200).json(notes);
         })
