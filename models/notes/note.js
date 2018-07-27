@@ -7,6 +7,9 @@ const note = {
         unique: true
     }  
     ,
+    id: {
+        type: Number,
+    },
     title: {
         type: String,
         required: [true, 'Title is required']
