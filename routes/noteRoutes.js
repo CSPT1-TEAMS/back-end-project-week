@@ -27,8 +27,13 @@ server.get('/', restricted, (req, res) => {
           res.status(500).json({message: 'There was a problem getting your notes', error: err.message});
       })
 })
-
-server.get('/:id', (req, res) => {
+// added restricted middleware to GET '/:id' route
+// so it still let me get user Don Quixote even though
+// he wasn't logged in
+// oh duh this is notes routes well don't I feel silly
+// so I now need to try to get a note by id without being logged in 
+// to that user's account. if all goes well, it shouldn't let me view that note
+server.get('/:id', restricted, (req, res) => {
     const { id } = req.params;
 
     Note.findById(id)
@@ -75,7 +80,7 @@ server.post('/create', restricted, (req, res) => {
         })
 });
 
-server.put('/edit/:id', (req, res) => {
+server.put('/edit/:id', restricted, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -103,7 +108,7 @@ server.put('/edit/:id', (req, res) => {
         });
 });
 
-server.delete('/delete/:id', (req, res) => {
+server.delete('/delete/:id', restricted, (req, res) => {
     const { id } = req.params;
 
     if (!id) {

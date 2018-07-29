@@ -5,7 +5,10 @@ const { createToken } = require('./auth');
 const { restricted } = require('./auth');
 
 // I don't like that a user can view all other users with his/her
-// valid token
+// valid token. So what I really want is for this method to only return
+// the user that is currently logged in, and an error message if no one is logged in
+// methinks that mebbe I should simply get rid of this get '/' request altogether
+// or perhaps make it only available to some sort of admin superuser
 server.get('/', restricted, (req, res) => {
     User.find().populate('notes')
         .then(users => {
@@ -17,7 +20,9 @@ server.get('/', restricted, (req, res) => {
         });
 });
 
-server.get('/:id', (req, res) => {
+// Should not return user unless that user is logged in
+// awesome this worked!!!!1111
+server.get('/:id', restricted, (req, res) => {
     const id = req.params.id;
     User.findById(id)
         .then(user => {
@@ -77,7 +82,7 @@ server.post('/login', (req, res) => {
         })
 });
 
-server.put('/edit/:id', (req, res) => {
+server.put('/edit/:id', restricted, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -99,7 +104,9 @@ server.put('/edit/:id', (req, res) => {
                 .json({ message: 'There was a problem finding that user', error: err });
         });
 });
-
+// again this is another instance where a user should only be able to delete her own account
+// or perhaps make this a method available to an admin superuser
+// not too sure which direction I should go here
 server.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
 

@@ -21,7 +21,7 @@ function restricted(req, res, next) {
     });
   }
   else {
-    res.status(401).json('You cannot view users with a valid token.');
+    res.status(401).json('You cannot view users/notes without a valid token.');
   }
 }
 
