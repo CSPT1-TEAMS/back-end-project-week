@@ -1,8 +1,8 @@
 const server = require('express').Router();
 
 const User = require('../models/User');
-const {createToken} = require('./auth');
-const {restricted} = require('./auth');
+const { createToken } = require('./auth');
+const { restricted } = require('./auth');
 
 // I don't like that a user can view all other users with his/her
 // valid token
@@ -46,13 +46,14 @@ server.post('/signup', (req, res) => {
 
 server.post('/login', (req, res) => {
     const { username, password } = req.body;
-
+    console.log(req.body);
     User.findOne({ username })
         .then(user => {
             if (user) {
                 user
                     .validatePassword(password)
                     .then(passwordsMatch => {
+                        console.log(passwordsMatch);
                         if (passwordsMatch) {
                             const token = createToken(user);
                             // send token back to client
@@ -74,47 +75,47 @@ server.post('/login', (req, res) => {
         .catch(err => {
             res.status(500).json('Error validating credentials.');
         })
-    });
+});
 
-    server.put('/edit/:id', (req, res) => {
-        const { id } = req.params;
-        const changes = req.body;
+server.put('/edit/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
 
-        const options = {
-            new: true,
-        };
+    const options = {
+        new: true,
+    };
 
-        User.findByIdAndUpdate(id, changes, options)
+    User.findByIdAndUpdate(id, changes, options)
+        .then(user => {
+            if (user) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({ message: 'There was a problem finding that user', error: err });
+        });
+});
+
+server.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        res.status(422).json({ message: 'You need to give me an ID' });
+    } else {
+        User.findByIdAndRemove(id)
             .then(user => {
                 if (user) {
-                    res.status(200).json(user);
+                    res.status(204).end();
                 } else {
                     res.status(404).json({ message: 'User not found' });
                 }
             })
-            .catch(err => {
-                res
-                    .status(500)
-                    .json({ message: 'There was a problem finding that user', error: err });
-            });
-    });
+            .catch(err => res.status(500).json(err));
+    }
+});
 
-    server.delete('/delete/:id', (req, res) => {
-        const { id } = req.params;
-
-        if (!id) {
-            res.status(422).json({ message: 'You need to give me an ID' });
-        } else {
-            User.findByIdAndRemove(id)
-                .then(user => {
-                    if (user) {
-                        res.status(204).end();
-                    } else {
-                        res.status(404).json({ message: 'User not found' });
-                    }
-                })
-                .catch(err => res.status(500).json(err));
-        }
-    });
-
-    module.exports = server;
+module.exports = server;
