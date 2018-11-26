@@ -1,0 +1,100 @@
+
+* Deploy
+
+- Console: 
+  https://console.aws.amazon.com/ec2/
+
+- SSH:
+  Notice we're logging in as user =ubuntu= instead of =ahrjarrett= or =root=
+
+- OS:
+Ubuntu 18
+
+#+BEGIN_SRC shell
+  $ ssh -i backend-project.pem ubuntu@18.236.166.82
+  # Once you've created a user, this will be your login!
+  $ ssh -i backend-project.pem ahrjarrett@18.236.166.82
+  $ sudo su # switch to root user
+#+END_SRC
+  
+
+** Config
+
+Launching on AWS EC2 instance.
+
+- IP Address:
+  18.236.166.82
+
+- Remote in:
+
+  =ssh -i backend-project.pem ahrjarrett.236.166.82=, them =sudo su=
+  
+*Note:* Make sure you run =chmod 0400 <path-to-pemfile>=, otherwise AWS will complain that it's not secure!
+
+*** Create a user with sudo privileges
+
+Login as root, then do:
+
+=adduser ahrjarrett=
+=usermod -aG sudo ahrjarrett=
+=su ahrjarrett=
+
+** Installing Node
+
+Installing version 10.x
+
+#+BEGIN_SRC shell
+  $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  $ sudo apt-get install -y nodejs
+#+END_SRC
+
+
+** Setting up the app
+
+Going to create our directory from home and call it =workspace=
+
+#+BEGIN_SRC shell
+  $ cd ~
+  $ mkdir workspace
+#+END_SRC
+
+Now clone your repo, install dependencies, and run the app.
+
+*** Exposing the app's port
+
+EC2 needs to know which port to expose.
+
+1. Go to the AWS console and click "NETWORK & SECURITY" >> *Security Groups*
+2. Select the group name =launch-wizard-X=
+3. Select the *Inbound* tab and click *Edit*, *Add Rule*
+
+   | Type       | Protocol | Port Range | Source   | Description |
+   |------------+----------+------------+----------+-------------|
+   | Custom TCP | TCP      |       3000 | Anywhere | [Optional]  |
+   
+Now navigate to http://18.236.166.82:3000/ and you should see your dumb app running!
+
+** Setting up your git repo
+
+[[https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps][Followed these instructions]]
+
+1. Create =/root/repo= directory
+2. Create =/root/repo/<PROJECT-NAME>.git= directory
+3. Navigate there and run =git init --bare=
+4. Touch =hooks/post-receive= file
+5. Make it an executable with =chmod +x hooks/post-receive=
+6. Put this in there:
+
+   #+BEGIN_SRC shell
+     #!/bin/sh
+     git --work-tree=/root/workspace/<PROJECT-NAME> --git-dir=/root/repo/<PROJECT-NAME.git checkout -f
+   #+END_SRC
+   
+7. Link local repo with remote
+
+#+BEGIN_SRC shell
+git remote add live ssh://ubuntu@18.236.166.82/root/repo/hello-world-node-express.git
+#+END_SRC
+
+
+
