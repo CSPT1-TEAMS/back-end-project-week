@@ -67,11 +67,15 @@ router.route('/note/:id')
 router.route('/createnote')
     .post((req, res) => {
         const { title, content } = req.body;
+        console.log(noteId)
         const newNote = { id: noteId, title, content };
 
+        //need to make sure the values are being passed
+        // 10/24/2019
 
-
-        Notes.create(newNote)
+        Notes.create(newNote).catch(err => {
+            console.log(err.json)
+        })
         noteId++;
         res.status(201).json(Notes)
     });
