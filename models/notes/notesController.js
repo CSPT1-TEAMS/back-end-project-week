@@ -48,11 +48,11 @@ router.route('/')
 
 
     })
-router.route('/note/:id')
+router.route('/note/:id/:MDBID')
     .get((req, res) => {
         console.log("route fired")
         //const { id } = req.params.id
-        Notes.findById(req.params.id)
+        Notes.findById(req.params.MDBID)
             .then(note => {
                 console.log('found the note')
                 res.status(201).json(note)
