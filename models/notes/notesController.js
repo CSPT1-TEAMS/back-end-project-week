@@ -85,6 +85,9 @@ router.route('/createnote')
 router.route('/note/:id/:MDBID')
     .put((req, res) => {
         const { id } = req.params.MDBID;
+        console.log(req)
+        console.log(req.body)
+        
         const { title, content } = req.body;
         Notes.findByIdAndUpdate(id, req.body)
             .then(note => {
