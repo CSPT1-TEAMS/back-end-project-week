@@ -82,9 +82,9 @@ router.route('/createnote')
         res.status(201).json(Notes)
     });
 
-router.route('/note/:id')
+router.route('/note/:id/:MDBID')
     .put((req, res) => {
-        const { id } = req.params;
+        const { id } = req.params.MDBID;
         const { title, content } = req.body;
         Notes.findByIdAndUpdate(id, req.body)
             .then(note => {
