@@ -50,6 +50,7 @@ router.route('/')
     })
 router.route('/note/:id')
     .get((req, res) => {
+        console.log("route fired")
         //const { id } = req.params.id
         Notes.findById(req.params.id)
             .then(note => {
