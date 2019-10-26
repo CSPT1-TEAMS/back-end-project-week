@@ -53,10 +53,12 @@ router.route('/note/:id')
         //const { id } = req.params.id
         Notes.findById(req.params.id)
             .then(note => {
+                console.log('found the note')
                 res.status(201).json(note)
             }
             )
             .catch(err => {
+                console.log('did not find the note')
                 res.status(500).json(err)
             })
         //const note = Notes.filter(note => note.id.toString() === id)[0]
@@ -70,8 +72,6 @@ router.route('/createnote')
         console.log(noteId)
         const newNote = { id: noteId, title, content };
 
-        //need to make sure the values are being passed
-        // 10/24/2019
 
         Notes.create(newNote).catch(err => {
             console.log(err.json)
