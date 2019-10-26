@@ -32,6 +32,8 @@ router.route('/')
                 res.status(500).json({ err: err.message })
             })
     })
+    
+router.route('/')
     .post((req, res) => {
         const { title, content } = req.body;
         const noteData = req.body;
