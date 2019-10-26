@@ -8,7 +8,7 @@ let noteId = Notes.length
 
 router.route('/')
     .get((req, res) => {
-
+        console.log(Notes.length)
         Notes.find()
             .then(notes => {
                 // if (notes.length === 0) {
