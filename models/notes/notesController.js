@@ -96,7 +96,7 @@ router.route('/note/:id/:MDBID')
         }
         
         const { title, content } = req.body;
-        Notes.update(id, {$set:{'title': req.body.title, 'content': req.body.content}})
+        Notes.updateOne(id, {$set:{'title': req.body.title, 'content': req.body.content}})
             .then(note => {
                 res.status(201).json(note)
             })
