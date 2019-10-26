@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 
 
 
-mongoose.connect(`mongodb://jplambda:Database1@ds145871.mlab.com:45871/jpnotesdb`)
+mongoose.connect(`mongodb://jplambda:Database1@ds145871.mlab.com:45871/jpnotesdb`, {useFindAndModify: false})
 .then(
   console.log('connected to mongodb server online')
 )

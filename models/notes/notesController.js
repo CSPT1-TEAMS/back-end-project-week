@@ -5,6 +5,7 @@ const Notes = require('./note.js');
 
 let noteId = Notes.length
 
+
 router.route('/')
     .get((req, res) => {
 
