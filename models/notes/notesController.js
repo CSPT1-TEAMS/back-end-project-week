@@ -86,7 +86,7 @@ router.route('/createnote')
 router.route('/note/:id/:MDBID')
     .put((req, res) => {
         const { id } = req.params.MDBID;
-        console.log(req)
+       
         console.log(req.body)
         Object.keys(req.body)
 
