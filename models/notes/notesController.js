@@ -53,7 +53,7 @@ router.route('/note/:id/:MDBID')
         console.log("route fired")
         console.log(req.params.MDBID)
         //const { id } = req.params.id
-        Notes.findById(req.params.MDBID)
+        Notes.find({_id: req.params.MDBID})
             .then(note => {
                 console.log('found the note')
                 res.status(201).json(note)
