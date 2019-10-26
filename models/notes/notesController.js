@@ -87,9 +87,15 @@ router.route('/note/:id/:MDBID')
         const { id } = req.params.MDBID;
         console.log(req)
         console.log(req.body)
+        Object.keys(req.body)
+
+        newObj = {
+            "title": req.body.title,
+            "content": req.body.content
+        }
         
         const { title, content } = req.body;
-        Notes.findByIdAndUpdate(id, req.body)
+        Notes.findByIdAndUpdate(id, newObj)
             .then(note => {
                 res.status(201).json(note)
             })
