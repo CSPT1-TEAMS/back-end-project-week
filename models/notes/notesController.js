@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const Notes = require('./note.js');
+const ObjectID = require('mongodb').ObjectID
 //get all
 
 let noteId = Notes.length
@@ -11,20 +12,20 @@ router.route('/')
         console.log(Notes.length)
         Notes.find()
             .then(notes => {
-                // if (notes.length === 0) {
+                if (notes.length === 0) {
 
-                //     const testNote =
-                //     {
-                //         "username": "Mr.T",
-                //         "title": "testNote",
-                //         "content": "long form content"
-                //     }
-                //     //const createNote = new Notes(testNote);
-                //     Notes.create(testNote).then(note => {
-                //         res.status(200).json(note)
-                //     });
-                //     return
-                // }
+                    const testNote =
+                    {
+                        "username": "Mr.T",
+                        "title": "testNote",
+                        "content": "long form content"
+                    }
+                    //const createNote = new Notes(testNote);
+                    Notes.create(testNote).then(note => {
+                        res.status(200).json(note)
+                    });
+                    return
+                }
                 res.status(200).json(notes)
             })
             .catch(err => {
@@ -85,8 +86,8 @@ router.route('/createnote')
 
 router.route('/note/:id/:MDBID')
     .put((req, res) => {
-        const { id } = req.params.MDBID;
-       
+        const { id } = ObjectID(req.params.MDBID);
+        
         console.log(req.body)
         Object.keys(req.body)
 
@@ -96,7 +97,7 @@ router.route('/note/:id/:MDBID')
         }
         
         const { title, content } = req.body;
-        Notes.updateOne({id}, {$set:{'title': req.body.title, 'content': req.body.content}})
+        Notes.updateOne(id, {$set:{'title': req.body.title, 'content': req.body.content}})
             .then(note => {
                 res.status(201).json(note)
             })
