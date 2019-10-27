@@ -50,7 +50,7 @@ router.route('/')
 
 
     })
-router.route('/note/:id/:MDBID')
+router.route('/note/:MDBID')
     .get((req, res) => {
         console.log("route fired")
         console.log(req.params.MDBID)
@@ -84,7 +84,7 @@ router.route('/createnote')
         res.status(201).json(Notes)
     });
 
-router.route('/note/:id/:MDBID')
+router.route('/note/:MDBID')
     .put((req, res) => {
         const id = ObjectID(req.params.MDBID);
         
