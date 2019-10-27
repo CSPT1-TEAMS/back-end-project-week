@@ -86,7 +86,7 @@ router.route('/createnote')
 
 router.route('/note/:id/:MDBID')
     .put((req, res) => {
-        const { id } = ObjectID(req.params.MDBID);
+        const id = ObjectID(req.params.MDBID);
         
         console.log(req.body)
         Object.keys(req.body)
@@ -97,7 +97,7 @@ router.route('/note/:id/:MDBID')
         }
         
         const { title, content } = req.body;
-        Notes.updateOne(id, {$set:{'title': req.body.title, 'content': req.body.content}})
+        Notes.updateOne({"_id": id }, {$set:{'title': req.body.title, 'content': req.body.content}})
             .then(note => {
                 res.status(201).json(note)
             })
