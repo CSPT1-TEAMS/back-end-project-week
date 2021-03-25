@@ -12,20 +12,20 @@ router.route('/')
         console.log(Notes.length)
         Notes.find()
             .then(notes => {
-                // if (notes.length === 0) {
+                if (notes.length === 0) {
 
-                //     const testNote =
-                //     {
-                //         "username": "Mr.T",
-                //         "title": "testNote",
-                //         "content": "long form content"
-                //     }
-                //     //const createNote = new Notes(testNote);
-                //     Notes.create(testNote).then(note => {
-                //         res.status(200).json(note)
-                //     });
-                //     return
-                // }
+                    const testNote =
+                    {
+                        "username": "Mr.T",
+                        "title": "testNote",
+                        "content": "long form content"
+                    }
+                    //const createNote = new Notes(testNote);
+                    Notes.create(testNote).then(note => {
+                        res.status(200).json(note)
+                    });
+                    return
+                }
                 res.status(200).json(notes)
             })
             .catch(err => {
@@ -72,7 +72,7 @@ router.route('/note/:MDBID')
 
 router.route('/createnote')
     .post((req, res) => {
-        console.log('seems to be working')
+        // console.log('seems to be working')
         const { title, content } = req.body;
         // console.log(noteId)
         const newNote = { id: noteId, title, content };
