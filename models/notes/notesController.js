@@ -72,6 +72,7 @@ router.route('/note/:MDBID')
 
 router.route('/createnote')
     .post((req, res) => {
+        console.log('seems to be working')
         const { title, content } = req.body;
         // console.log(noteId)
         const newNote = { id: noteId, title, content };

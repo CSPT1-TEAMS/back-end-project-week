@@ -12,9 +12,9 @@ const mongoose = require('mongoose');
 //`mongodb://localhost:27017/localnotesdb`
 //`mongodb://${DB_USER}:${DB_PASS}@ds145871.mlab.com:45871/jpnotesdb`
 
+//mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mongodb.net/jpnotesdb?retryWrites=true&w=majority
 
-
-mongoose.connect(`mongodb://jplambda:Database1@ds145871.mlab.com:45871/jpnotesdb`, {useFindAndModify: false,useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mongodb.net/jpnotesdb?retryWrites=true&w=majority`, {useFindAndModify: false,useUnifiedTopology: true, useNewUrlParser: true })
 .then(
   console.log('connected to mongodb server online')
 )
