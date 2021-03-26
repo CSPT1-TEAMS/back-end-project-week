@@ -19,7 +19,7 @@ mongoose.createConnection(`mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mon
   console.log('connected to mongodb server online')
 )
 .catch(err => {
-  //res.status(500).json(err)
+  res.status(500).json(err)
   return console.log('something wrong with local mongo');
 })
 

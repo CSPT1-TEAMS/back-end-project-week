@@ -72,7 +72,7 @@ router.route('/createnote')
     .post((req, res) => {
         // console.log('seems to be working')
         const { title, content } = req.body;
-    
+      
         const newNote = { id: noteId, title, content };
         
 
@@ -80,6 +80,7 @@ router.route('/createnote')
             console.log(err.json, "catch error")
         })
         noteId++;
+        console.log(Notes)
         res.status(201).json(Notes)
     });
 
