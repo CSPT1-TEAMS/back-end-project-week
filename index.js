@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 
 //mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mongodb.net/jpnotesdb?retryWrites=true&w=majority
 
-mongoose.connect(`mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mongodb.net/jpnotesdb`, {useFindAndModify: false,useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useNewUrlParser: true })
+mongoose.createConnection(`mongodb+srv://jamesemery:SchoolHub@cluster0.9ku2n.mongodb.net/jpnotesdb`, {useFindAndModify: false,useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useNewUrlParser: true })
 .then(
   console.log('connected to mongodb server online')
 )

@@ -72,12 +72,12 @@ router.route('/createnote')
     .post((req, res) => {
         // console.log('seems to be working')
         const { title, content } = req.body;
-        // console.log(noteId)
+    
         const newNote = { id: noteId, title, content };
-
+        
 
         Notes.create(newNote).catch(err => {
-            console.log(err.json)
+            console.log(err.json, "catch error")
         })
         noteId++;
         res.status(201).json(Notes)
