@@ -110,17 +110,31 @@ router.route('/note/:MDBID')
         //need to change this if I do logged in users and access
     })
 
-router.route('/note/:MDBID')
-    .findByIdAndDelete(req.params.MDBID, (req, res) => {
-        const { id } = req.params.MDBID;
-        const foundNote = Notes.find(note => note.id == id);
-        if (foundNote) {
-            const noteremoved = { ...foundNote }
-            Notes = Notes.filter(note => note.id != id);
-            res.status(200).json({ noteremoved });
+router.delete('/note/:MDBID', (req, res) => {
+    // const foundNote = Notes.find(note => note.id == req.params.MDBID);
+    
+    Notes.findByIdAndDelete(req.params.MDBID, (req, res) => {
+        if(req) {
+            throw req;
+        } else {
+            res.status(200).json(res)
         }
     })
 
+
+
+    // .findByIdAndDelete(req.params.MDBID, (req, res) => {
+    //     const { id } = req.params.MDBID;
+        
+    //     if (foundNote) {
+    //         const noteremoved = { ...foundNote }
+    //         Notes = Notes.filter(note => note.id != id);
+    //         res.status(200).json({ noteremoved });
+    //     }
+    // })
+
+})
+    
 //app.delete('/note/:id')
 
 
