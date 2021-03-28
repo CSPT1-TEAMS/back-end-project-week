@@ -111,7 +111,7 @@ router.route('/note/:MDBID')
     })
 
 router.route('/note/:MDBID')
-    .delete((req, res) => {
+    .findByIdAndDelete(req.params.MDBID, (req, res) => {
         const { id } = req.params.MDBID;
         const foundNote = Notes.find(note => note.id == id);
         if (foundNote) {
