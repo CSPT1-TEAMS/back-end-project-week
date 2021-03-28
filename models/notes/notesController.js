@@ -110,9 +110,9 @@ router.route('/note/:MDBID')
         //need to change this if I do logged in users and access
     })
 
-router.route('/note/:id')
+router.route('/note/:MDBID')
     .delete((req, res) => {
-        const { id } = req.params;
+        const { id } = req.params.MDBID;
         const foundNote = Notes.find(note => note.id == id);
         if (foundNote) {
             const noteremoved = { ...foundNote }
